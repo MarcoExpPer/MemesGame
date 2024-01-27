@@ -18,7 +18,7 @@ public:
 	// Sets default values for this actor's properties
 	AThrowableSpawner();
 
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TArray<TSubclassOf<AThrowableItem>> AvailableThrowables;
 
 	//Cooldown applies after the player picks the item

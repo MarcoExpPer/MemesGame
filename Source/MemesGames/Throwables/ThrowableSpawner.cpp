@@ -17,14 +17,12 @@ void AThrowableSpawner::BeginPlay()
 {
 	Super::BeginPlay();
 	
-
-
-
+	SpawnItem();
 }
 
 TSubclassOf<AThrowableItem> AThrowableSpawner::GetRandomItemClass()
 {
-	int RandomIndex = FMath::RandRange(0, AvailableThrowables.Num() - 1);
+	int RandomIndex = FMath::RandRange(0, AvailableThrowables.Num());
 	return AvailableThrowables[RandomIndex];
 }
 
@@ -34,7 +32,7 @@ void AThrowableSpawner::SpawnItem() {
 	AThrowableItem* SpawnedItem = Cast<AThrowableItem>(
 		GetWorld()->SpawnActor<AThrowableItem>(GetRandomItemClass(), GetActorLocation(), GetActorRotation(), SpawnParams));
 
-	SpawnedItem->OnPickedFromFloor->BindUObject(this, &AThrowableSpawner::OnSpawnedItemPicked);
+	SpawnedItem->OnPickedFromFloor.BindUObject(this, &AThrowableSpawner::OnSpawnedItemPicked);
 }
 
 void AThrowableSpawner::OnSpawnedItemPicked()

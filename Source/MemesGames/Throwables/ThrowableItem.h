@@ -31,7 +31,7 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	UClass* ItemToSpawnClass;
 
-	FOnPickedFromFloor* OnPickedFromFloor;
+	FOnPickedFromFloor OnPickedFromFloor;
 protected:
 
 	virtual void BeginPlay() override;

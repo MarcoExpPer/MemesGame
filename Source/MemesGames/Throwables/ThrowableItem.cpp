@@ -29,7 +29,7 @@ void AThrowableItem::Throw(APawn* actor)
 
 void AThrowableItem::Interacted(AActor* actor)
 {
-	OnPickedFromFloor->ExecuteIfBound();
+	OnPickedFromFloor.ExecuteIfBound();
 
 	FAttachmentTransformRules Rules = FAttachmentTransformRules::SnapToTargetNotIncludingScale;
 	AttachToActor(actor, Rules);
