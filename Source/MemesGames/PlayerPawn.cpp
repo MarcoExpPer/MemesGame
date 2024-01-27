@@ -2,6 +2,8 @@
 
 
 #include "PlayerPawn.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "Components/FollowedByCameraComponent.h"
 
 // Sets default values
 APlayerPawn::APlayerPawn()
@@ -9,11 +11,14 @@ APlayerPawn::APlayerPawn()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	FollowCameraComp = CreateDefaultSubobject<UFollowedByCameraComponent>(TEXT("Follow Camera Comp"));
 }
 
 void APlayerPawn::MoveRight(float value)
 {
+	GEngine->AddOnScreenDebugMessage(1, 1.0f, FColor::Yellow, FString::Printf(TEXT("Value: %f"), value));
 	AddMovementInput(RightDirection, value);
+	GetCharacterMovement()->AddInputVector(RightDirection* value);
 }
 
 void APlayerPawn::DoJump()

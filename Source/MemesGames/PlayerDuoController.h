@@ -44,9 +44,18 @@ public:
 	UFUNCTION(BlueprintCallable)
 	APlayerPawn* GetPlayer2() { return Pawn2; }
 
+	UFUNCTION(BlueprintCallable)
+	void SetPlayer1(APlayerPawn* Player1){ Pawn1 = Player1;}
+	UFUNCTION(BlueprintCallable)
+	void SetPlayer2(APlayerPawn* Player2) { Pawn2 = Player2; }
+
 	UPROPERTY(EditDefaultsOnly)
 	TSoftClassPtr<APlayerPawn> PlayerClass;
 
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+	
 private:
 	APlayerPawn* Pawn1;
 	APlayerPawn* Pawn2;

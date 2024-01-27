@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "PlayerPawn.generated.h"
 
+class UFollowedByCameraComponent;
+
 UCLASS()
 class MEMESGAMES_API APlayerPawn : public ACharacter
 {
@@ -24,6 +26,9 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 	FVector RightDirection = FVector(1, 0, 0);
+
+	UPROPERTY(EditDefaultsOnly)
+	UFollowedByCameraComponent* FollowCameraComp;
 
 protected:
 	// Called when the game starts or when spawned

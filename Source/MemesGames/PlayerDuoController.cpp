@@ -3,12 +3,15 @@
 
 #include "PlayerDuoController.h"
 #include "PlayerPawn.h"
+#include "InteligentCamera.h"
+#include <Kismet/GameplayStatics.h>
 
 void APlayerDuoController::SpawnPlayerPawn(FTransform SpawnTransform, bool isPlayer1)
 {
 	APlayerPawn* NewPlayerPawn = GetWorld()->SpawnActor<APlayerPawn>(PlayerClass.LoadSynchronous(), SpawnTransform, FActorSpawnParameters());
 	if (isPlayer1) {
 		Pawn1 = NewPlayerPawn;
+		Possess(Pawn1);
 	}
 	else {
 		Pawn2 = NewPlayerPawn;
@@ -53,4 +56,12 @@ void APlayerDuoController::InteractP1()
 void APlayerDuoController::InteractP2()
 {
 	Pawn2->Interact();
+}
+
+void APlayerDuoController::BeginPlay()
+{
+	Super::BeginPlay();
+
+	
+	//Cast<AInteligentCamera>(UGameplayStatics::GetActorOfClass(GetWorld(), AInteligentCamera::StaticClass()));
 }
