@@ -22,7 +22,7 @@ public:
 	TArray<TSubclassOf<AThrowableItem>> AvailableThrowables;
 
 	//Cooldown applies after the player picks the item
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	float Cooldown = 10.f;
 	//Randomness applied to the cooldown to add variety
 	float CooldownRngDelta = 3.f;

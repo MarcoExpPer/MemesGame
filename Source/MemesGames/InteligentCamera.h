@@ -16,13 +16,13 @@ class MEMESGAMES_API AInteligentCamera : public AActor
 public:
 	AInteligentCamera();
 
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UCameraComponent* Camera;
 
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	USpringArmComponent* Arm;
 
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	float CameraAdjustSpeed = 3.f;
 
 	void AddActorToWatchlist(AActor* actor);
