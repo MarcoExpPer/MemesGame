@@ -5,17 +5,15 @@
 #include "PlayerPawn.h"
 #include "InteligentCamera.h"
 #include <Kismet/GameplayStatics.h>
+#include <MemesGames/PlayersData.h>
 
 void APlayerDuoController::SpawnPlayerPawn(FTransform SpawnTransform, bool isPlayer1)
 {
-	APlayerPawn* NewPlayerPawn = GetWorld()->SpawnActor<APlayerPawn>(PlayerClass.LoadSynchronous(), SpawnTransform, FActorSpawnParameters());
-	if (isPlayer1) {
-		Pawn1 = NewPlayerPawn;
-		Possess(Pawn1);
-	}
-	else {
-		Pawn2 = NewPlayerPawn;
-	}
+	EPlayerSkin SkinEnum = isPlayer1 ? PlayersData->Player1Skin : PlayersData->Player2Skin;
+	UClass* SkinClass = SkinEnum == EPlayerSkin::PS_BOY ? PlayerBoyClass.LoadSynchronous() : PlayerGirlClass.LoadSynchronous();
+	APlayerPawn* NewPlayerPawn = GetWorld()->SpawnActor<APlayerPawn>(SkinClass, SpawnTransform, FActorSpawnParameters());
+
+	isPlayer1 ? Pawn1 = NewPlayerPawn : Pawn2 = NewPlayerPawn;
 }
 
 void APlayerDuoController::MoveRightP1(float value)

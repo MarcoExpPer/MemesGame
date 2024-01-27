@@ -8,6 +8,7 @@
 
 
 class APlayerPawn;
+class UPlayersData;
 
 UCLASS()
 class MEMESGAMES_API APlayerDuoController : public APlayerController
@@ -50,7 +51,9 @@ public:
 	void SetPlayer2(APlayerPawn* Player2) { Pawn2 = Player2; }
 
 	UPROPERTY(EditDefaultsOnly)
-	TSoftClassPtr<APlayerPawn> PlayerClass;
+	TSoftClassPtr<APlayerPawn> PlayerBoyClass;
+	UPROPERTY(EditDefaultsOnly)
+	TSoftClassPtr<APlayerPawn> PlayerGirlClass;
 
 protected:
 	// Called when the game starts or when spawned
@@ -59,6 +62,8 @@ protected:
 private:
 	APlayerPawn* Pawn1;
 	APlayerPawn* Pawn2;
+
+	UPlayersData* PlayersData;
 
 	
 

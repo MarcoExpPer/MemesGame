@@ -25,13 +25,16 @@ public:
 	UBoxComponent* boxCol;
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
-	float StunDuration;
+	float StunDuration = 1.f;
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
-	float KnockbackStrength;
+	float KnockbackStrength = 2500;
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
-	FVector KnockbackDirection;
+	float ScoreOnHit = 10.f;
+
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	FVector KnockbackDirection = FVector(0, 1, 0);
 
 protected:
 	// Called when the game starts or when spawned

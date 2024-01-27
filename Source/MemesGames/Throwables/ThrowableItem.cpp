@@ -24,7 +24,6 @@ void AThrowableItem::Throw(APawn* actor)
 
 	GetWorld()->SpawnActor<AActor>(ItemToSpawnClass, SpawnLocation, SpawnRotation, SpawnParams);
 
-	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("Throw! ") + GetName());
 	Destroy();
 }
 

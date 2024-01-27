@@ -33,7 +33,12 @@ void ACakeProjectile::OnCakeOverlap(UPrimitiveComponent* OverlappedComponent, AA
 
 		if (APlayerPawn* PlayerPawn = Cast<APlayerPawn>(OtherActor)) {
 			PlayerPawn->Stun(StunDuration);
+
+			bool bInvertY = GetActorForwardVector().Y < 0;
+			FVector FinalKnockback = FVector(0.f, KnockbackDirection.Y * bInvertY ? -1 : 1, KnockbackDirection.Z);
 			PlayerPawn->KnockBack(KnockbackDirection, KnockbackStrength);
+
+			PlayerPawn->AddScore(ScoreOnHit);
 		}
 
 		Destroy();

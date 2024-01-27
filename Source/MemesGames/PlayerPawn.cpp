@@ -6,6 +6,7 @@
 #include "Components/FollowedByCameraComponent.h"
 #include "Components/InteractComponent.h"
 #include "Throwables/ThrowableItem.h"
+#include "MemesGames/MemesGamesGameModeBase.h"
 
 // Sets default values
 APlayerPawn::APlayerPawn()
@@ -18,13 +19,15 @@ APlayerPawn::APlayerPawn()
 
 void APlayerPawn::MoveRight(float value)
 {
-	GEngine->AddOnScreenDebugMessage(1, 1.0f, FColor::Yellow, FString::Printf(TEXT("Value: %f"), value));
+	if (bIsStunned) return;
+
 	AddMovementInput(RightDirection, value);
 	GetCharacterMovement()->AddInputVector(RightDirection* value);
 }
 
 void APlayerPawn::DoJump()
 {
+	if (bIsStunned) return;
 	Jump();
 }
 
@@ -51,11 +54,22 @@ void APlayerPawn::Throw()
 
 void APlayerPawn::KnockBack(FVector Direction, float Strength)
 {
+	GetCharacterMovement()->AddImpulse(Direction * Strength + FVector::UpVector * 10, true);
 }
 
 void APlayerPawn::Stun(float duration)
 {
+	bIsStunned = true;
+	
+	FTimerDelegate TimerDel;
+	TimerDel.BindUObject(this, &APlayerPawn::SetIsStunned, false);
 
+	GetWorldTimerManager().SetTimer(StunHandle, TimerDel, duration, false);
+}
+
+void APlayerPawn::AddScore(float Amount)
+{
+	gm->AddScore(Amount, bIsPlayer1);
 }
 
 void APlayerPawn::BeginPlay()

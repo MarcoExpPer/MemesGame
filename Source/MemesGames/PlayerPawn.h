@@ -9,6 +9,7 @@
 class UFollowedByCameraComponent;
 class UInteractComponent;
 class AThrowableItem;
+class AMemesGamesGameModeBase;
 
 UCLASS()
 class MEMESGAMES_API APlayerPawn : public ACharacter
@@ -31,7 +32,7 @@ public:
 	void Stun(float duration);
 
 	virtual void Tick(float DeltaTime) override;
-	
+
 	void SetThrowableEquiped(AThrowableItem* NewThrowable) { ThrowableEquiped = NewThrowable; }
 
 	UPROPERTY(EditDefaultsOnly)
@@ -43,10 +44,21 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	UInteractComponent* InteractComp;
 
+	void SetIsStunned(bool newState) { bIsStunned = newState; }
+
+	UFUNCTION(BlueprintCallable)
+	bool IsStunned() {return bIsStunned;}
+
+	void SetIsPlayer1(bool NewIsPlayer1) { bIsPlayer1 = NewIsPlayer1; }
+
+	void AddScore(float Amount);
 protected:
 	virtual void BeginPlay() override;
 
 private:
-
+	bool bIsStunned = false;
+	FTimerHandle StunHandle;
 	AThrowableItem* ThrowableEquiped;
+	bool bIsPlayer1 = false;
+	AMemesGamesGameModeBase* gm;
 };
