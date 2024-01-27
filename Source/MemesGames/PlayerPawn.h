@@ -76,12 +76,12 @@ public:
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 	bool bIsStunned = false;
 
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	bool AreControlsInverted = false;
 protected:
 	virtual void BeginPlay() override;
 
 private:
-	
-	bool AreControlsInverted = false;
 
 	FTimerHandle StunHandle;
 	AThrowableItem* ThrowableEquiped;

@@ -11,7 +11,7 @@ UInteractComponent::UInteractComponent()
 	PrimaryComponentTick.bCanEverTick = false;
 }
 
-void UInteractComponent::Interact()
+bool UInteractComponent::Interact()
 {
 	FVector SphereCentre = GetOwner()->GetActorLocation() + GetOwner()->GetActorForwardVector() * InteractRange;
 
@@ -49,5 +49,7 @@ void UInteractComponent::Interact()
 
 	if (ClosestInteractable != nullptr) {
 		ClosestInteractable->Interact(GetOwner());
+		return true;
 	}
+	return false;
 }

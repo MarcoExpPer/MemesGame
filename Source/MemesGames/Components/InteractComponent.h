@@ -6,6 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "InteractComponent.generated.h"
 
+class UInteractableComponent;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class MEMESGAMES_API UInteractComponent : public UActorComponent
@@ -16,12 +17,11 @@ public:
 	
 	UInteractComponent();
 
-	void Interact();
+	bool Interact();
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 	float InteractRadius = 100.f;
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 	float InteractRange = 75.f;
-
 };

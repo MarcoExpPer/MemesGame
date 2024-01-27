@@ -42,7 +42,9 @@ void APlayerPawn::DoStopJump()
 void APlayerPawn::Interact()
 {
 	if (ThrowableEquiped == nullptr) {
-		InteractComp->Interact();
+		if (InteractComp->Interact()) {
+			OnDoAnimation.Broadcast(EPlayerAnims::PA_PICKUP);
+		}
 	}
 	else {
 		Throw();
@@ -51,8 +53,16 @@ void APlayerPawn::Interact()
 
 void APlayerPawn::Throw()
 {
-	ThrowableEquiped->Throw(this);
-	ThrowableEquiped = nullptr;
+	OnDoAnimation.Broadcast(EPlayerAnims::PA_THROW);
+
+	FTimerHandle uselessHandle;
+	GetWorld()->GetTimerManager().SetTimer(uselessHandle, [this] {
+		ThrowableEquiped->Throw(this);
+		ThrowableEquiped = nullptr;
+	}, 0.20f, false);
+
+	//ThrowableEquiped->Throw(this);
+	//ThrowableEquiped = nullptr;
 }
 
 void APlayerPawn::KnockBack(FVector Direction, float Strength)
@@ -63,7 +73,7 @@ void APlayerPawn::KnockBack(FVector Direction, float Strength)
 void APlayerPawn::Stun(float duration)
 {
 	bIsStunned = true;
-
+	
 	FTimerDelegate TimerDel;
 	TimerDel.BindUObject(this, &APlayerPawn::SetIsStunned, false);
 
