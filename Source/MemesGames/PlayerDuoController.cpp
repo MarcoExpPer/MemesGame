@@ -11,7 +11,9 @@ void APlayerDuoController::SpawnPlayerPawn(FTransform SpawnTransform, bool isPla
 {
 	EPlayerSkin SkinEnum = isPlayer1 ? PlayersData->Player1Skin : PlayersData->Player2Skin;
 	UClass* SkinClass = SkinEnum == EPlayerSkin::PS_BOY ? PlayerBoyClass.LoadSynchronous() : PlayerGirlClass.LoadSynchronous();
+	
 	APlayerPawn* NewPlayerPawn = GetWorld()->SpawnActor<APlayerPawn>(SkinClass, SpawnTransform, FActorSpawnParameters());
+	NewPlayerPawn->SetIsPlayer1(isPlayer1);
 
 	isPlayer1 ? Pawn1 = NewPlayerPawn : Pawn2 = NewPlayerPawn;
 }
@@ -58,8 +60,7 @@ void APlayerDuoController::InteractP2()
 
 void APlayerDuoController::BeginPlay()
 {
-	Super::BeginPlay();
+	PlayersData = Cast<UPlayersData>(UGameplayStatics::GetGameInstance(GetWorld()));
 
-	
-	//Cast<AInteligentCamera>(UGameplayStatics::GetActorOfClass(GetWorld(), AInteligentCamera::StaticClass()));
+	Super::BeginPlay();
 }

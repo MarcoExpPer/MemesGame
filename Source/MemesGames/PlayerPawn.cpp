@@ -7,6 +7,7 @@
 #include "Components/InteractComponent.h"
 #include "Throwables/ThrowableItem.h"
 #include "MemesGames/MemesGamesGameModeBase.h"
+#include <Kismet/GameplayStatics.h>
 
 // Sets default values
 APlayerPawn::APlayerPawn()
@@ -76,6 +77,7 @@ void APlayerPawn::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	gm = Cast<AMemesGamesGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
 }
 
 void APlayerPawn::Tick(float DeltaTime)

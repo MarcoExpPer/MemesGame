@@ -5,16 +5,23 @@
 
 void AMemesGamesGameModeBase::AddScore(float Amount, bool AddToPlayer1)
 {
-    AddToPlayer1 ? Player1Score += Amount : Player2Score += Amount;
+    if (AddToPlayer1) {
+        Player1Score += Amount;
+        OnScoreUpdate.Broadcast(true, Player1Score);
 
-    OnScoreUpdate.Broadcast(AddToPlayer1, AddToPlayer1 ? Player1Score : Player2Score);
-    if (Player1Score >= ScoreToLose) {
-        //Player 1 loses
-        OnMatchEnd.Broadcast(EMatchEndReason::ME_PLAYER2_WINS);
+        if (Player1Score >= ScoreToLose) {
+            //Player 1 loses
+            OnMatchEnd.Broadcast(EMatchEndReason::ME_PLAYER2_WINS);
+        }
     }
-    else if(Player2Score >= ScoreToLose){
-        //Player 2 loses
-        OnMatchEnd.Broadcast(EMatchEndReason::ME_PLAYER1_WINS);
+    else {
+        Player2Score += Amount;
+        OnScoreUpdate.Broadcast(false, Player2Score);
+
+        if (Player2Score >= ScoreToLose) {
+            //Player 2 loses
+            OnMatchEnd.Broadcast(EMatchEndReason::ME_PLAYER1_WINS);
+        }
     }
 }
 
