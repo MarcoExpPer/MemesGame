@@ -10,8 +10,7 @@
 // Sets default values
 ACakeProjectile::ACakeProjectile()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 	boxCol = CreateDefaultSubobject<UBoxComponent>(TEXT("Colision"));
 	SetRootComponent(boxCol);
@@ -44,11 +43,3 @@ void ACakeProjectile::OnCakeOverlap(UPrimitiveComponent* OverlappedComponent, AA
 		Destroy();
 	}
 }
-
-// Called every frame
-void ACakeProjectile::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
