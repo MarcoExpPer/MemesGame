@@ -22,7 +22,7 @@ void AThrowableSpawner::BeginPlay()
 
 TSubclassOf<AThrowableItem> AThrowableSpawner::GetRandomItemClass()
 {
-	int RandomIndex = FMath::RandRange(0, AvailableThrowables.Num());
+	int RandomIndex = FMath::RandRange(0, AvailableThrowables.Num() -1);
 	return AvailableThrowables[RandomIndex];
 }
 

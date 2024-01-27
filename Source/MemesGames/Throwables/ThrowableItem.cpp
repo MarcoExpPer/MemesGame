@@ -31,7 +31,7 @@ void AThrowableItem::Interacted(AActor* actor)
 {
 	OnPickedFromFloor.ExecuteIfBound();
 
-	FAttachmentTransformRules Rules = FAttachmentTransformRules::SnapToTargetNotIncludingScale;
+	FAttachmentTransformRules Rules = FAttachmentTransformRules(EAttachmentRule::SnapToTarget, EAttachmentRule::KeepWorld, EAttachmentRule::KeepWorld, false);
 	AttachToActor(actor, Rules);
 
 	Cast<APlayerPawn>(actor)->SetThrowableEquiped(this);
