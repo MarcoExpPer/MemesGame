@@ -28,7 +28,9 @@ public:
 
 	void Throw();
 
+	UFUNCTION(BlueprintCallable)
 	void KnockBack(FVector Direction, float Strength);
+	UFUNCTION(BlueprintCallable)
 	void Stun(float duration);
 
 	virtual void Tick(float DeltaTime) override;
