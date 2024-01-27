@@ -8,6 +8,7 @@
 #include "Throwables/ThrowableItem.h"
 #include "MemesGames/MemesGamesGameModeBase.h"
 #include <Kismet/GameplayStatics.h>
+//#include "PaperFlipbookComponent.h"
 
 // Sets default values
 APlayerPawn::APlayerPawn()
@@ -24,7 +25,7 @@ void APlayerPawn::MoveRight(float value)
 	if (AreControlsInverted) value *= -1;
 
 	AddMovementInput(RightDirection, value);
-	GetCharacterMovement()->AddInputVector(RightDirection* value);
+	GetCharacterMovement()->AddInputVector(RightDirection * value);
 }
 
 void APlayerPawn::DoJump()
@@ -62,7 +63,7 @@ void APlayerPawn::KnockBack(FVector Direction, float Strength)
 void APlayerPawn::Stun(float duration)
 {
 	bIsStunned = true;
-	
+
 	FTimerDelegate TimerDel;
 	TimerDel.BindUObject(this, &APlayerPawn::SetIsStunned, false);
 
@@ -79,6 +80,12 @@ void APlayerPawn::Poison(float duration)
 		}, duration, false);
 }
 
+bool APlayerPawn::IsStunned()
+{
+	return bIsStunned;
+}
+
+
 void APlayerPawn::AddScore(float Amount)
 {
 	gm->AddScore(Amount, bIsPlayer1);
@@ -87,7 +94,7 @@ void APlayerPawn::AddScore(float Amount)
 void APlayerPawn::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 	gm = Cast<AMemesGamesGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
 }
 

@@ -4,12 +4,25 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+//#include "Paper2D/PaperSpriteComponent.h"
 #include "PlayerPawn.generated.h"
 
 class UFollowedByCameraComponent;
 class UInteractComponent;
 class AThrowableItem;
 class AMemesGamesGameModeBase;
+
+UENUM(BlueprintType)
+enum class EPlayerAnims : uint8 {
+	PA_IDLE,
+	PA_WALK,
+	PA_THROW,
+	PA_PICKUP,
+	PA_FALLDOWN,
+	PA_JUMP
+};
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPlayerDoAnimation, EPlayerAnims, PlayerAnim);
 
 UCLASS()
 class MEMESGAMES_API APlayerPawn : public ACharacter
@@ -51,16 +64,23 @@ public:
 	void SetIsStunned(bool newState) { bIsStunned = newState; }
 
 	UFUNCTION(BlueprintCallable)
-	bool IsStunned() {return bIsStunned;}
+	bool IsStunned();
 
 	void SetIsPlayer1(bool NewIsPlayer1) { bIsPlayer1 = NewIsPlayer1; }
 
 	void AddScore(float Amount);
+
+	UPROPERTY(BlueprintAssignable)
+	FOnPlayerDoAnimation OnDoAnimation;
+
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	bool bIsStunned = false;
+
 protected:
 	virtual void BeginPlay() override;
 
 private:
-	bool bIsStunned = false;
+	
 	bool AreControlsInverted = false;
 
 	FTimerHandle StunHandle;
