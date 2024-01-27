@@ -28,9 +28,6 @@ void AInteligentCamera::RemoveActorFromWatchlist(AActor* actor)
 	WatchList.Remove(actor);
 }
 
-float minZoomDistance = 3000;
-float maxZoomDistance = 10000.f;
-
 void AInteligentCamera::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);

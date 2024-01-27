@@ -25,6 +25,11 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	float CameraAdjustSpeed = 3.f;
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	float minZoomDistance = 3000;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	float maxZoomDistance = 10000.f;
+
 	void AddActorToWatchlist(AActor* actor);
 	void RemoveActorFromWatchlist(AActor* actor);
 
