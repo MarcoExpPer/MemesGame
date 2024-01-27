@@ -6,6 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "InteractableComponent.generated.h"
 
+DECLARE_DELEGATE_OneParam(FOnInteract, AActor*)
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class MEMESGAMES_API UInteractableComponent : public UActorComponent
@@ -17,4 +18,11 @@ public:
 	UInteractableComponent();
 	
 	void Interact(AActor* Interactor);
+
+	FOnInteract* GetOnInteract() { return &OnInteract; }
+	bool CanBeInteracted() { return bCanBeInteracted;  }
+
+private:
+	FOnInteract OnInteract;
+	bool bCanBeInteracted = true;
 };

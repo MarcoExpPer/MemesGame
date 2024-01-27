@@ -10,5 +10,6 @@ UInteractableComponent::UInteractableComponent()
 
 void UInteractableComponent::Interact(AActor* Interactor)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("Interact! ") + GetOwner()->GetName());
+	bCanBeInteracted = false;
+	OnInteract.ExecuteIfBound(Interactor);
 }

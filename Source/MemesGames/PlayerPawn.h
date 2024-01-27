@@ -8,6 +8,7 @@
 
 class UFollowedByCameraComponent;
 class UInteractComponent;
+class AThrowableItem;
 
 UCLASS()
 class MEMESGAMES_API APlayerPawn : public ACharacter
@@ -24,6 +25,15 @@ public:
 
 	void Interact();
 
+	void Throw();
+
+	void KnockBack(FVector Direction, float Strength);
+	void Stun(float duration);
+
+	virtual void Tick(float DeltaTime) override;
+	
+	void SetThrowableEquiped(AThrowableItem* NewThrowable) { ThrowableEquiped = NewThrowable; }
+
 	UPROPERTY(EditDefaultsOnly)
 	FVector RightDirection = FVector(1, 0, 0);
 
@@ -34,11 +44,9 @@ public:
 	UInteractComponent* InteractComp;
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+private:
 
+	AThrowableItem* ThrowableEquiped;
 };

@@ -17,20 +17,21 @@ void UInteractComponent::Interact()
 
 	DrawDebugSphere(GetWorld(), SphereCentre, InteractRadius, 32, FColor::Red);
 
+	TArray<AActor*> toIgnore;
+	toIgnore.Push(GetOwner());
 
 	TArray<FHitResult> OutHit;
 	UKismetSystemLibrary::SphereTraceMultiByProfile(GetWorld(), SphereCentre, SphereCentre,
-		InteractRadius, "Pawn", false, TArray<AActor*>(), EDrawDebugTrace::None, OutHit, true);
+		InteractRadius, "Pawn", false, toIgnore, EDrawDebugTrace::None, OutHit, true);
 
-	UInteractableComponent* Interactable = nullptr;
+	UInteractableComponent* ClosestInteractable = nullptr;
 	float ClosestDistance = TNumericLimits<float>::Max();
 
 	for (FHitResult hit : OutHit) {
-		if (hit.bBlockingHit) {
-			
-			UInteractableComponent* InteractbleHit = Cast< UInteractableComponent>(hit.GetActor()->GetComponentByClass(UInteractableComponent::StaticClass()));
+		if(IsValid(hit.GetActor())){
+			UInteractableComponent* InteractableHit = Cast<UInteractableComponent>(hit.GetActor()->GetComponentByClass(UInteractableComponent::StaticClass()));
 
-			if (InteractbleHit != nullptr) {
+			if (InteractableHit != nullptr && InteractableHit->CanBeInteracted()) {
 
 				FVector HitLocation = hit.GetActor()->GetActorLocation();
 				float NewDistance = FVector::Dist2D(GetOwner()->GetActorLocation(), HitLocation);
@@ -38,14 +39,15 @@ void UInteractComponent::Interact()
 				if (NewDistance < ClosestDistance) {
 
 					ClosestDistance = NewDistance;
-					Interactable = InteractbleHit;
+					ClosestInteractable = InteractableHit;
 
 				}
 			}
 		}
+		
 	}
 
-	if (Interactable != nullptr) {
-		Interactable->Interact(GetOwner());
+	if (ClosestInteractable != nullptr) {
+		ClosestInteractable->Interact(GetOwner());
 	}
 }

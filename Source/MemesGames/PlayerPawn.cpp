@@ -5,6 +5,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Components/FollowedByCameraComponent.h"
 #include "Components/InteractComponent.h"
+#include "Throwables/ThrowableItem.h"
 
 // Sets default values
 APlayerPawn::APlayerPawn()
@@ -34,17 +35,35 @@ void APlayerPawn::DoStopJump()
 
 void APlayerPawn::Interact()
 {
-	InteractComp->Interact();
+	if (ThrowableEquiped == nullptr) {
+		InteractComp->Interact();
+	}
+	else {
+		Throw();
+	}
 }
 
-// Called when the game starts or when spawned
+void APlayerPawn::Throw()
+{
+	ThrowableEquiped->Throw(this);
+	ThrowableEquiped = nullptr;
+}
+
+void APlayerPawn::KnockBack(FVector Direction, float Strength)
+{
+}
+
+void APlayerPawn::Stun(float duration)
+{
+
+}
+
 void APlayerPawn::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
-// Called every frame
 void APlayerPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
