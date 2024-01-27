@@ -26,5 +26,6 @@ protected:
 private:	
 	AInteligentCamera* Camera;
 
+	bool bHasBeenAdded = false;
 		
 };

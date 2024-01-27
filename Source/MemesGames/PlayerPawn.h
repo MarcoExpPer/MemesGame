@@ -7,6 +7,7 @@
 #include "PlayerPawn.generated.h"
 
 class UFollowedByCameraComponent;
+class UInteractComponent;
 
 UCLASS()
 class MEMESGAMES_API APlayerPawn : public ACharacter
@@ -14,7 +15,6 @@ class MEMESGAMES_API APlayerPawn : public ACharacter
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
 	APlayerPawn();
 
 	void MoveRight(float value);
@@ -29,6 +29,9 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 	UFollowedByCameraComponent* FollowCameraComp;
+
+	UPROPERTY(EditDefaultsOnly)
+	UInteractComponent* InteractComp;
 
 protected:
 	// Called when the game starts or when spawned

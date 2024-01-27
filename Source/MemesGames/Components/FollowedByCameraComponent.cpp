@@ -13,8 +13,10 @@ UFollowedByCameraComponent::UFollowedByCameraComponent()
 
 void UFollowedByCameraComponent::OnComponentDestroyed(bool bDestroyingHierarchy)
 {
-	Camera->RemoveActorFromWatchlist(GetOwner());
-
+	if (bHasBeenAdded) {
+		Camera->RemoveActorFromWatchlist(GetOwner());
+	}
+	
 	Super::OnComponentDestroyed(bDestroyingHierarchy);
 }
 
@@ -24,5 +26,6 @@ void UFollowedByCameraComponent::BeginPlay()
 	
 	Camera = Cast<AInteligentCamera>(UGameplayStatics::GetActorOfClass(GetWorld(), AInteligentCamera::StaticClass()));
 	Camera->AddActorToWatchlist(GetOwner());
+	bHasBeenAdded = true;
 }
 
