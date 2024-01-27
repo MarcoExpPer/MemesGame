@@ -21,6 +21,7 @@ APlayerPawn::APlayerPawn()
 void APlayerPawn::MoveRight(float value)
 {
 	if (bIsStunned) return;
+	if (AreControlsInverted) value *= -1;
 
 	AddMovementInput(RightDirection, value);
 	GetCharacterMovement()->AddInputVector(RightDirection* value);
@@ -66,6 +67,16 @@ void APlayerPawn::Stun(float duration)
 	TimerDel.BindUObject(this, &APlayerPawn::SetIsStunned, false);
 
 	GetWorldTimerManager().SetTimer(StunHandle, TimerDel, duration, false);
+}
+
+void APlayerPawn::Poison(float duration)
+{
+	GetWorldTimerManager().ClearTimer(PoisonHandle);
+	AreControlsInverted = true;
+
+	GetWorldTimerManager().SetTimer(PoisonHandle, [this] {
+		AreControlsInverted = false;
+		}, duration, false);
 }
 
 void APlayerPawn::AddScore(float Amount)

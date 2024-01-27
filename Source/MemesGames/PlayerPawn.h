@@ -33,6 +33,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void Stun(float duration);
 
+	void Poison(float duration);
+
 	virtual void Tick(float DeltaTime) override;
 
 	void SetThrowableEquiped(AThrowableItem* NewThrowable) { ThrowableEquiped = NewThrowable; }
@@ -59,8 +61,12 @@ protected:
 
 private:
 	bool bIsStunned = false;
+	bool AreControlsInverted = false;
+
 	FTimerHandle StunHandle;
 	AThrowableItem* ThrowableEquiped;
 	bool bIsPlayer1 = false;
 	AMemesGamesGameModeBase* gm;
+
+	FTimerHandle PoisonHandle;
 };
