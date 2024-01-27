@@ -29,7 +29,7 @@ void AThrowableItem::Throw(APawn* actor)
 
 void AThrowableItem::Interacted(AActor* actor)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("Interact! ") + GetName());
+	OnPickedFromFloor->ExecuteIfBound();
 
 	FAttachmentTransformRules Rules = FAttachmentTransformRules::SnapToTargetNotIncludingScale;
 	AttachToActor(actor, Rules);

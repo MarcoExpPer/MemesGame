@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "ThrowableItem.generated.h"
 
+DECLARE_DELEGATE(FOnPickedFromFloor)
+
 class UInteractableComponent;
 class UFollowedByCameraComponent;
 
@@ -29,6 +31,7 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	UClass* ItemToSpawnClass;
 
+	FOnPickedFromFloor* OnPickedFromFloor;
 protected:
 
 	virtual void BeginPlay() override;
