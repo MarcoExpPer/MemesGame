@@ -6,7 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "CakeProjectile.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FDoSound, int, typeofSound);
+//DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FDoSound, int, typeofSound);
 
 class UProjectileMovementComponent;
 class UBoxComponent;
@@ -20,8 +20,8 @@ public:
 	// Sets default values for this actor's properties
 	ACakeProjectile();
 
-	UPROPERTY(BlueprintAssignable)
-	FDoSound DoSound;
+	//UPROPERTY(BlueprintAssignable)
+	//FDoSound DoSound;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UProjectileMovementComponent* movementComp;

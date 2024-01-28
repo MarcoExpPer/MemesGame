@@ -27,6 +27,7 @@ void ABananaProjectile::BeginPlay()
 	SetActorRotation(FRotator(InitialPitch, GetActorRotation().Yaw, GetActorRotation().Roll));
 
 	movementComp->Velocity = GetActorForwardVector() * movementComp->InitialSpeed;
+
 }
 
 void ABananaProjectile::OnBananaOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
@@ -89,6 +90,8 @@ void ABananaProjectile::OnBananaOverlap(UPrimitiveComponent* OverlappedComponent
 			PlayerPawn->KnockBack(FinalKnockback, KnockbackStrength);
 
 			PlayerPawn->AddScore(ScoreOnHit);
+
+			//DoSound.Broadcast(1);
 
 			Destroy();
 		}

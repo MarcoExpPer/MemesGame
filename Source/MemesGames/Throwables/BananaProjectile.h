@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "BananaProjectile.generated.h"
 
+//DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FDoSound, int, typeofSound);
+
 class UProjectileMovementComponent;
 class UBoxComponent;
 
@@ -24,7 +26,11 @@ class MEMESGAMES_API ABananaProjectile : public AActor
 public:
 
 	ABananaProjectile();
+
 	
+	UPROPERTY(EditAnywhere, Category = "FMOD")
+	class UFMODEvent* Event;
+
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UProjectileMovementComponent* movementComp;
 

@@ -24,7 +24,7 @@ void ACakeProjectile::BeginPlay()
 	Super::BeginPlay();
 	boxCol->OnComponentBeginOverlap.AddDynamic(this, &ACakeProjectile::OnCakeOverlap);
 
-	DoSound.Broadcast(0);
+	//DoSound.Broadcast(0);
 }
 
 void ACakeProjectile::OnCakeOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
@@ -42,7 +42,7 @@ void ACakeProjectile::OnCakeOverlap(UPrimitiveComponent* OverlappedComponent, AA
 			PlayerPawn->AddScore(ScoreOnHit);
 		}
 
-		DoSound.Broadcast(1);
+		//DoSound.Broadcast(1);
 		Destroy();
 	}
 }
