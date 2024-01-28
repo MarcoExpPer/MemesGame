@@ -26,4 +26,10 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 	EPlayerSkin Player2Skin = EPlayerSkin::PS_NONE;
+
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	float Player1Score = 0;
+
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	float Player2Score = 0;
 };

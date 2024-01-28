@@ -6,6 +6,8 @@
 #include "GameFramework/GameModeBase.h"
 #include "MemesGamesGameModeBase.generated.h"
 
+class UPlayersData;
+
 UENUM(BlueprintType)
 enum class EMatchEndReason : uint8 {
 	ME_TIMEOUT,
@@ -42,6 +44,11 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	FOnScoreUpdate OnScoreUpdate;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	TSoftObjectPtr<UWorld> EndScreenWorld;
+
+	UPlayersData* gInstance;
 
 protected:
 	virtual void BeginPlay() override;
