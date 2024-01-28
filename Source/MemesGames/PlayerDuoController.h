@@ -51,9 +51,13 @@ public:
 	void SetPlayer2(APlayerPawn* Player2) { Pawn2 = Player2; }
 
 	UPROPERTY(EditDefaultsOnly)
-	TSoftClassPtr<APlayerPawn> PlayerBoyClass;
+	TSoftClassPtr<APlayerPawn> PlayerBoy1Class;
 	UPROPERTY(EditDefaultsOnly)
-	TSoftClassPtr<APlayerPawn> PlayerGirlClass;
+	TSoftClassPtr<APlayerPawn> PlayerGirl1Class;
+	UPROPERTY(EditDefaultsOnly)
+	TSoftClassPtr<APlayerPawn> PlayerBoy2Class;
+	UPROPERTY(EditDefaultsOnly)
+	TSoftClassPtr<APlayerPawn> PlayerGirl2Class;
 
 protected:
 	// Called when the game starts or when spawned

@@ -9,8 +9,10 @@
 UENUM(BlueprintType)
 enum class EPlayerSkin : uint8 {
 	PS_NONE,
-	PS_BOY,
-	PS_GIRL
+	PS_BOY_1,
+	PS_GIRL_1,
+	PS_BOY_2,
+	PS_GIRL_2
 };
 
 UCLASS()

@@ -10,7 +10,8 @@
 void APlayerDuoController::SpawnPlayerPawn(FTransform SpawnTransform, bool isPlayer1)
 {
 	EPlayerSkin SkinEnum = isPlayer1 ? PlayersData->Player1Skin : PlayersData->Player2Skin;
-	UClass* SkinClass = SkinEnum == EPlayerSkin::PS_BOY ? PlayerBoyClass.LoadSynchronous() : PlayerGirlClass.LoadSynchronous();
+	UClass* SkinClass = SkinEnum == EPlayerSkin::PS_BOY_1 ? PlayerBoy1Class.LoadSynchronous() : SkinEnum == EPlayerSkin::PS_GIRL_1 ? 
+		PlayerGirl1Class.LoadSynchronous() : SkinEnum == EPlayerSkin::PS_BOY_2 ? PlayerBoy2Class.LoadSynchronous() : PlayerGirl2Class.LoadSynchronous();
 	
 	APlayerPawn* NewPlayerPawn = GetWorld()->SpawnActor<APlayerPawn>(SkinClass, SpawnTransform, FActorSpawnParameters());
 	NewPlayerPawn->SetIsPlayer1(isPlayer1);
