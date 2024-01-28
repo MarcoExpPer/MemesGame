@@ -91,8 +91,6 @@ void ABananaProjectile::OnBananaOverlap(UPrimitiveComponent* OverlappedComponent
 
 			PlayerPawn->AddScore(ScoreOnHit);
 
-			//DoSound.Broadcast(1);
-
 			Destroy();
 		}
 
