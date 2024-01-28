@@ -10,6 +10,7 @@ DECLARE_DELEGATE(FOnPickedFromFloor)
 
 class UInteractableComponent;
 class UFollowedByCameraComponent;
+class APlayerPawn;
 
 UCLASS()
 class MEMESGAMES_API AThrowableItem : public AActor
@@ -20,7 +21,7 @@ public:
 	// Sets default values for this actor's properties
 	AThrowableItem();
 
-	void Throw(APawn* actor);
+	void Throw(APlayerPawn* actor);
 
 	UPROPERTY(EditDefaultsOnly)
 	UFollowedByCameraComponent* FollowCameraComp;
@@ -36,5 +37,5 @@ protected:
 
 	virtual void BeginPlay() override;
 
-	virtual void Interacted(AActor* actor);
+	virtual void Interacted(APlayerPawn* actor);
 };

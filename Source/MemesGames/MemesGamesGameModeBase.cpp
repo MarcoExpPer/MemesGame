@@ -35,6 +35,8 @@ void AMemesGamesGameModeBase::AddScore(float Amount, bool AddToPlayer1)
 
 void AMemesGamesGameModeBase::StartTimer()
 {
+    OnTimerUpdate.Broadcast(MatchTime);
+    CurrentTimer = MatchTime;
     GetWorldTimerManager().SetTimer(CountDownHandle, this, &AMemesGamesGameModeBase::TimerTick, 1.f, true);
 }
 
@@ -50,7 +52,7 @@ void AMemesGamesGameModeBase::TimerTick()
     CurrentTimer -= 1;
     OnTimerUpdate.Broadcast(CurrentTimer);
 
-    if (CurrentTimer <= 0) {
+    if (CurrentTimer < 0) {
         OnMatchEnd.Broadcast(EMatchEndReason::ME_TIMEOUT);
         UGameplayStatics::OpenLevelBySoftObjectPtr(GetWorld(), EndScreenWorld);
     }

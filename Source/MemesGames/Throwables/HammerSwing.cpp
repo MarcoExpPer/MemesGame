@@ -37,7 +37,7 @@ void AHammerSwing::BeginPlay()
 	SetActorRotation(FRotator(InitialPitch, GetActorRotation().Yaw, GetActorRotation().Roll));
 
 	FAttachmentTransformRules Rules = FAttachmentTransformRules(EAttachmentRule::SnapToTarget, EAttachmentRule::KeepWorld, EAttachmentRule::KeepWorld, false);
-	AttachToActor(GetInstigator(), Rules);
+	AttachToComponent((Cast<APlayerPawn>(GetInstigator()))->ItemJointPoint, Rules);
 }
 
 void AHammerSwing::OnHammerOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)

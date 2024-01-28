@@ -6,7 +6,9 @@
 #include "Components/ActorComponent.h"
 #include "InteractableComponent.generated.h"
 
-DECLARE_DELEGATE_OneParam(FOnInteract, AActor*)
+class APlayerPawn;
+
+DECLARE_DELEGATE_OneParam(FOnInteract, APlayerPawn*)
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class MEMESGAMES_API UInteractableComponent : public UActorComponent

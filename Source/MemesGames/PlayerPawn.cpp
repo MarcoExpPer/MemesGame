@@ -17,6 +17,9 @@ APlayerPawn::APlayerPawn()
 
 	FollowCameraComp = CreateDefaultSubobject<UFollowedByCameraComponent>(TEXT("Follow Camera Comp"));
 	InteractComp = CreateDefaultSubobject<UInteractComponent>(TEXT("Interact Component"));
+	ItemJointPoint = CreateDefaultSubobject<USceneComponent>(TEXT("Item joint point"));
+	ItemJointPoint->SetupAttachment(RootComponent);
+
 }
 
 void APlayerPawn::MoveRight(float value)
@@ -61,8 +64,6 @@ void APlayerPawn::Throw()
 		ThrowableEquiped = nullptr;
 	}, 0.20f, false);
 
-	//ThrowableEquiped->Throw(this);
-	//ThrowableEquiped = nullptr;
 }
 
 void APlayerPawn::KnockBack(FVector Direction, float Strength)

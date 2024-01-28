@@ -27,7 +27,7 @@ void AWaterFlower::BeginPlay()
 	boxCol->OnComponentBeginOverlap.AddDynamic(this, &AWaterFlower::OnWaterOverlap);
 
 	FAttachmentTransformRules Rules = FAttachmentTransformRules(EAttachmentRule::SnapToTarget, EAttachmentRule::KeepWorld, EAttachmentRule::KeepWorld, false);
-	AttachToActor(GetInstigator(), Rules);
+	AttachToComponent((Cast<APlayerPawn>(GetInstigator()))->ItemJointPoint, Rules);
 
 	TArray<AActor*> output;
 	boxCol->GetOverlappingActors(output);

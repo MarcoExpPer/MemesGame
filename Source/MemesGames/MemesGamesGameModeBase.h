@@ -30,23 +30,26 @@ public:
 
 	float GetPlayer1Score() { return Player1Score; }
 	float GetPlayer2Score() { return Player2Score; }
-
+	UFUNCTION(BlueprintCallable)
 	void StartTimer();
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	float ScoreToLose = 100;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintAssignable)
 	FOnMatchEnd OnMatchEnd;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintAssignable)
 	FOnTimerUpdate OnTimerUpdate;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintAssignable)
 	FOnScoreUpdate OnScoreUpdate;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TSoftObjectPtr<UWorld> EndScreenWorld;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	float MatchTime = 180;
 
 	UPlayersData* gInstance;
 

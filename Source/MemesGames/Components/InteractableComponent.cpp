@@ -2,6 +2,7 @@
 
 
 #include "InteractableComponent.h"
+#include <MemesGames/PlayerPawn.h>
 
 UInteractableComponent::UInteractableComponent()
 {
@@ -11,5 +12,5 @@ UInteractableComponent::UInteractableComponent()
 void UInteractableComponent::Interact(AActor* Interactor)
 {
 	bCanBeInteracted = false;
-	OnInteract.ExecuteIfBound(Interactor);
+	OnInteract.ExecuteIfBound(Cast<APlayerPawn>(Interactor));
 }

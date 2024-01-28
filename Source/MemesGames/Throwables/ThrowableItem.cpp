@@ -15,24 +15,24 @@ AThrowableItem::AThrowableItem()
 	InteractableComp = CreateDefaultSubobject<UInteractableComponent>(TEXT("Interact Component"));
 }
 
-void AThrowableItem::Throw(APawn* actor)
+void AThrowableItem::Throw(APlayerPawn* actor)
 {
 	FVector SpawnLocation = GetActorLocation();
 	FRotator SpawnRotation = actor->GetActorRotation();
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.Instigator = actor;
 
-	GetWorld()->SpawnActor<AActor>(ItemToSpawnClass, SpawnLocation, SpawnRotation, SpawnParams);
+	GetWorld()->SpawnActor<AActor>(ItemToSpawnClass, actor->ItemJointPoint->GetComponentLocation(), SpawnRotation, SpawnParams);
 
 	Destroy();
 }
 
-void AThrowableItem::Interacted(AActor* actor)
+void AThrowableItem::Interacted(APlayerPawn* actor)
 {
 	OnPickedFromFloor.ExecuteIfBound();
 
 	FAttachmentTransformRules Rules = FAttachmentTransformRules(EAttachmentRule::SnapToTarget, EAttachmentRule::KeepWorld, EAttachmentRule::KeepWorld, false);
-	AttachToActor(actor, Rules);
+	AttachToComponent(actor->ItemJointPoint, Rules);
 
 	Cast<APlayerPawn>(actor)->SetThrowableEquiped(this);
 }

@@ -11,6 +11,7 @@ class UFollowedByCameraComponent;
 class UInteractComponent;
 class AThrowableItem;
 class AMemesGamesGameModeBase;
+class USceneComponent;
 
 UENUM(BlueprintType)
 enum class EPlayerAnims : uint8 {
@@ -60,6 +61,9 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 	UInteractComponent* InteractComp;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	USceneComponent* ItemJointPoint;
 
 	void SetIsStunned(bool newState) { bIsStunned = newState; }
 
