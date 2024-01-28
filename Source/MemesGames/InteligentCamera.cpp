@@ -76,9 +76,9 @@ void AInteligentCamera::Tick(float DeltaTime)
 			}
 		}
 
-		float HDistance = RightMostCharacter->GetActorLocation().Y - LeftMostCharacter->GetActorLocation().Y;
+		float HDistance = RightMostCharacter->GetActorLocation().Y - LeftMostCharacter->GetActorLocation().Y + 500;
 		float YLocation = LeftMostCharacter->GetActorLocation().Y + (HDistance)/2;
-		float ZLocation = DownMostCharacter->GetActorLocation().Z + (UpMostCharacter->GetActorLocation().Z - DownMostCharacter->GetActorLocation().Z)/4;
+		float ZLocation = DownMostCharacter->GetActorLocation().Z + (UpMostCharacter->GetActorLocation().Z - DownMostCharacter->GetActorLocation().Z)/2;
 
 		float newOrthoWidth = FMath::Lerp(minZoomDistance, maxZoomDistance, (HDistance - minZoomDistance) / maxZoomDistance);
 		Camera->OrthoWidth = FMath::Lerp(Camera->OrthoWidth, newOrthoWidth, DeltaTime * CameraAdjustSpeed);
