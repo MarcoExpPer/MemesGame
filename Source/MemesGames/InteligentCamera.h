@@ -30,6 +30,12 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	float maxZoomDistance = 10000.f;
 
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	float ExtraHOffset = 1000;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	float ExtraVOFfset = 1000;
+	
 	void AddActorToWatchlist(AActor* actor);
 	void RemoveActorFromWatchlist(AActor* actor);
 

@@ -75,13 +75,17 @@ void AInteligentCamera::Tick(float DeltaTime)
 				}
 			}
 		}
-
-		float HDistance = RightMostCharacter->GetActorLocation().Y - LeftMostCharacter->GetActorLocation().Y + 500;
-		float YLocation = LeftMostCharacter->GetActorLocation().Y + (HDistance)/2;
-		float ZLocation = DownMostCharacter->GetActorLocation().Z + (UpMostCharacter->GetActorLocation().Z - DownMostCharacter->GetActorLocation().Z)/2;
+		float LeftMostY = LeftMostCharacter->GetActorLocation().Y - ExtraHOffset;
+		float RightMostY = RightMostCharacter->GetActorLocation().Y + ExtraHOffset;
+		float TopMostZ = UpMostCharacter->GetActorLocation().X + ExtraVOFfset;
+		float BottomMostZ = DownMostCharacter->GetActorLocation().X - ExtraVOFfset;
+		
+		float HDistance = RightMostY - LeftMostY;
+		float YLocation =  + (HDistance)/2;
+		float ZLocation = BottomMostZ + (TopMostZ - BottomMostZ)/2;
 
 		float newOrthoWidth = FMath::Lerp(minZoomDistance, maxZoomDistance, (HDistance - minZoomDistance) / maxZoomDistance);
 		Camera->OrthoWidth = FMath::Lerp(Camera->OrthoWidth, newOrthoWidth, DeltaTime * CameraAdjustSpeed);
-		SetActorLocation(FMath::Lerp(GetActorLocation(), FVector(0, YLocation, ZLocation), DeltaTime * CameraAdjustSpeed));
+		SetActorLocation(FMath::Lerp(GetActorLocation(), FVector(GetActorLocation().X, YLocation, ZLocation), DeltaTime * CameraAdjustSpeed));
 	}
 }
