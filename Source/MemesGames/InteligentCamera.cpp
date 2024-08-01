@@ -13,8 +13,9 @@ AInteligentCamera::AInteligentCamera()
 	SetRootComponent(Arm);
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+	Camera->bDrawFrustumAllowed = true;
+	
 	Camera->SetupAttachment(RootComponent);
-
 	Camera->SetProjectionMode(ECameraProjectionMode::Orthographic);
 }
 
@@ -33,59 +34,65 @@ void AInteligentCamera::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	if (WatchList.Num() > 0) {
-		AActor* LeftMostCharacter = nullptr;
-		AActor* RightMostCharacter = nullptr;
-		AActor* UpMostCharacter = nullptr;
-		AActor* DownMostCharacter = nullptr;
+		AActor* LeftMostCharacter = WatchList[0];
+		AActor* RightMostCharacter = WatchList[0];
+		AActor* UpMostCharacter = WatchList[0];
+		AActor* DownMostCharacter = WatchList[0];
 
 		for (AActor* actor : WatchList) {
-			if (!IsValid(LeftMostCharacter)) {
+			if (actor->GetActorLocation().Y < LeftMostCharacter->GetActorLocation().Y) {
 				LeftMostCharacter = actor;
 			}
-			else {
-				if (actor->GetActorLocation().Y < LeftMostCharacter->GetActorLocation().Y) {
-					LeftMostCharacter = actor;
-				}
-			}
 
-			if (!IsValid(RightMostCharacter)) {
+			if (actor->GetActorLocation().Y > RightMostCharacter->GetActorLocation().Y) {
 				RightMostCharacter = actor;
 			}
-			else {
-				if (actor->GetActorLocation().Y > RightMostCharacter->GetActorLocation().Y) {
-					RightMostCharacter = actor;
-				}
-			}
-
-			if (!IsValid(UpMostCharacter)) {
+			
+			if (actor->GetActorLocation().Z > UpMostCharacter->GetActorLocation().Z) {
 				UpMostCharacter = actor;
 			}
-			else {
-				if (actor->GetActorLocation().Z > UpMostCharacter->GetActorLocation().Z) {
-					UpMostCharacter = actor;
-				}
-			}
 
-			if (!IsValid(DownMostCharacter)) {
+			if (actor->GetActorLocation().Z < DownMostCharacter->GetActorLocation().Z)
+			{
 				DownMostCharacter = actor;
 			}
-			else {
-				if (actor->GetActorLocation().Z < DownMostCharacter->GetActorLocation().Z) {
-					DownMostCharacter = actor;
-				}
-			}
 		}
+		
 		float LeftMostY = LeftMostCharacter->GetActorLocation().Y - ExtraHOffset;
 		float RightMostY = RightMostCharacter->GetActorLocation().Y + ExtraHOffset;
-		float TopMostZ = UpMostCharacter->GetActorLocation().X + ExtraVOFfset;
-		float BottomMostZ = DownMostCharacter->GetActorLocation().X - ExtraVOFfset;
-		
-		float HDistance = RightMostY - LeftMostY;
-		float YLocation =  + (HDistance)/2;
-		float ZLocation = BottomMostZ + (TopMostZ - BottomMostZ)/2;
+		float TopMostZ = UpMostCharacter->GetActorLocation().Z + ExtraVOFfset;
+		float BottomMostZ = DownMostCharacter->GetActorLocation().Z - ExtraVOFfset;
 
-		float newOrthoWidth = FMath::Lerp(minZoomDistance, maxZoomDistance, (HDistance - minZoomDistance) / maxZoomDistance);
+		if(false){
+			FVector LeftTopPoint = FVector(0, LeftMostY, TopMostZ);
+			FVector RightTopPoint = FVector(0, RightMostY, TopMostZ);
+
+			FVector LeftBottomPoint = FVector(0, LeftMostY, BottomMostZ);
+			FVector RightBottomPoint = FVector(0, RightMostY, BottomMostZ);
+			
+			DrawDebugSphere(GetWorld(), LeftMostCharacter->GetActorLocation(), 50.f, 32, FColor::Green);
+			DrawDebugSphere(GetWorld(), RightMostCharacter->GetActorLocation(), 50.f, 32, FColor::Red);
+			DrawDebugSphere(GetWorld(), UpMostCharacter->GetActorLocation(), 50.f, 32, FColor::Blue);
+			DrawDebugSphere(GetWorld(), DownMostCharacter->GetActorLocation(), 50.f, 32, FColor::Orange);
+				
+			DrawDebugLine(GetWorld(), LeftTopPoint, RightTopPoint, FColor::Red);
+			DrawDebugLine(GetWorld(), LeftTopPoint, LeftBottomPoint, FColor::Red);
+
+			DrawDebugLine(GetWorld(), RightBottomPoint, RightTopPoint, FColor::Red);
+			DrawDebugLine(GetWorld(), RightBottomPoint, LeftBottomPoint, FColor::Red);
+		}
+		
+		float HorizontalWidth = RightMostY - LeftMostY;
+		float OrthoWidthAlpha = (HorizontalWidth - minZoomDistance) / maxZoomDistance;
+		float newOrthoWidth = FMath::Lerp(minZoomDistance, maxZoomDistance, OrthoWidthAlpha);
 		Camera->OrthoWidth = FMath::Lerp(Camera->OrthoWidth, newOrthoWidth, DeltaTime * CameraAdjustSpeed);
-		SetActorLocation(FMath::Lerp(GetActorLocation(), FVector(GetActorLocation().X, YLocation, ZLocation), DeltaTime * CameraAdjustSpeed));
+
+		float HorizontalLocation = LeftMostY + HorizontalWidth/2;
+		
+		float VerticalWidth = TopMostZ - BottomMostZ;
+		float VerticalLocation = BottomMostZ + VerticalWidth/2;
+		
+		FVector TargetCameraLocation = FVector(GetActorLocation().X, HorizontalLocation,  VerticalLocation);
+		SetActorLocation(FMath::Lerp(GetActorLocation(), TargetCameraLocation, DeltaTime * CameraAdjustSpeed));
 	}
 }
