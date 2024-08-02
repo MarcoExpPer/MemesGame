@@ -9,14 +9,18 @@
   <component name="ChangeListManager">
     <list default="true" id="fa068346-5a34-443e-9e92-c6a036b81a57" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MemesGames/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MemesGames/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Maps/MainMenu.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/MainMenu.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/UI/CharSelector/Boy-1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/UI/CharSelector/Boy-1.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/UI/CharSelector/Girl-1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/UI/CharSelector/Girl-1.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/UI/CharSelector/boy_2_c.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/UI/CharSelector/boy_2_c.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/UI/CharSelector/girl_2_c.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/UI/CharSelector/girl_2_c.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/UI/WBP_CharacterSelection.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/UI/WBP_CharacterSelection.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/UI/WBP_MainMenuWidget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/UI/WBP_MainMenuWidget.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Player/BP_PlayerBoy1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Player/BP_PlayerBoy1.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Player/PaperZD/BPAZ_Player.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Player/PaperZD/BPAZ_Player.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Throwables/BP_ThrowableSpawner.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Throwables/BP_ThrowableSpawner.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Throwables/Projectile/BP_BananaProjectile.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Throwables/Projectile/BP_BananaProjectile.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Throwables/Projectile/BP_BoxTrickProjectile.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Throwables/Projectile/BP_BoxTrickProjectile.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Throwables/Projectile/BP_HammerSwing.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Throwables/Projectile/BP_HammerSwing.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Maps/Lvl_Woods.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/Lvl_Woods.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Maps/TestLevel.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/TestLevel.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Plugins/Developer/RiderLink/Intermediate/FileSystemMappings.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/Developer/RiderLink/Intermediate/FileSystemMappings.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/MemesGames/InteligentCamera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/MemesGames/InteligentCamera.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/MemesGames/Throwables/BananaProjectile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/MemesGames/Throwables/BananaProjectile.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/MemesGames/Throwables/BoxTrickProjectile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/MemesGames/Throwables/BoxTrickProjectile.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,9 +34,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://0" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://3" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../Program Files/Epic Games/UE_5.1/Engine/Source/Runtime/Engine/Classes/Camera/CameraComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../Program Files/Epic Games/UE_5.1/Engine/Source/Runtime/Engine/Classes/Camera/CameraTypes.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../../Program Files/Epic Games/UE_5.1/Engine/Source/Runtime/Engine/Classes/Components/BoxComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../Program Files/Epic Games/UE_5.1/Engine/Source/Runtime/Engine/Private/Camera/CameraComponent.cpp" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
@@ -105,7 +114,8 @@
       <workItem from="1722537296895" duration="499000" />
       <workItem from="1722539271420" duration="2766000" />
       <workItem from="1722548011152" duration="671000" />
-      <workItem from="1722588288628" duration="1576000" />
+      <workItem from="1722588288628" duration="2250000" />
+      <workItem from="1722592554433" duration="2787000" />
     </task>
     <servers />
   </component>

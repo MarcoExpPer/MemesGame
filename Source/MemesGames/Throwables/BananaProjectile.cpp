@@ -12,8 +12,11 @@ ABananaProjectile::ABananaProjectile()
 {
 	PrimaryActorTick.bCanEverTick = false;
 
+	USceneComponent* newRoot = CreateDefaultSubobject<USceneComponent>(TEXT("NewRoot"));
+	SetRootComponent(newRoot);
+	
 	boxCol = CreateDefaultSubobject<UBoxComponent>(TEXT("Colision"));
-	SetRootComponent(boxCol);
+	boxCol->SetupAttachment(RootComponent);
 
 	movementComp = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Move Comp"));
 }
@@ -54,15 +57,17 @@ void ABananaProjectile::OnBananaOverlap(UPrimitiveComponent* OverlappedComponent
 
 			FHitResult out;
 			FVector StartLocation = boxCol->GetScaledBoxExtent();
+			
 			StartLocation = FVector(GetActorLocation().X, GetActorLocation().Y, GetActorLocation().Z - StartLocation.Z + 2);
-			FVector EndLocation = StartLocation + FVector::DownVector * 10;
-
+			FVector EndLocation = StartLocation + FVector::DownVector * 100;
+			
 			if (GetWorld()->LineTraceSingleByObjectType(out, StartLocation, EndLocation, queryPrms, ColParams)) {
 				BananaState = EBananaState::BS_ONFLOOR;
 				movementComp->ProjectileGravityScale = 0;
-
-				DrawDebugPoint(GetWorld(), out.ImpactPoint, 20, FColor::Blue, true);
+				
 			}
+
+			
 		}
 		break;
 	}

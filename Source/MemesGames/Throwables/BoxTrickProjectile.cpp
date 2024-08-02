@@ -13,8 +13,11 @@ ABoxTrickProjectile::ABoxTrickProjectile()
 {
 	PrimaryActorTick.bCanEverTick = false;
 
+	USceneComponent* newRoot = CreateDefaultSubobject<USceneComponent>(TEXT("NewRoot"));
+	SetRootComponent(newRoot);
+	
 	boxCol = CreateDefaultSubobject<UBoxComponent>(TEXT("Colision"));
-	SetRootComponent(boxCol);
+	boxCol->SetupAttachment(RootComponent);
 
 	sphereCol = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere Colision"));
 	sphereCol->SetupAttachment(RootComponent);
@@ -28,6 +31,10 @@ void ABoxTrickProjectile::BeginPlay()
 	Super::BeginPlay();
 	boxCol->OnComponentBeginOverlap.AddDynamic(this, &ABoxTrickProjectile::OnBoxTrickOverlap);
 	sphereCol->OnComponentBeginOverlap.AddDynamic(this, &ABoxTrickProjectile::OnSphereTrickOverlap);
+	
+	SetActorRotation(FRotator(InitialPitch, GetActorRotation().Yaw, GetActorRotation().Roll));
+
+	movementComp->Velocity = GetActorForwardVector() * movementComp->InitialSpeed;
 }
 
 void ABoxTrickProjectile::OnBoxTrickOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)

@@ -13,7 +13,6 @@ AInteligentCamera::AInteligentCamera()
 	SetRootComponent(Arm);
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
-	Camera->bDrawFrustumAllowed = true;
 	
 	Camera->SetupAttachment(RootComponent);
 	Camera->SetProjectionMode(ECameraProjectionMode::Orthographic);
