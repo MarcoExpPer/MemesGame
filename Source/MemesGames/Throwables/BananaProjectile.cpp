@@ -55,19 +55,26 @@ void ABananaProjectile::OnBananaOverlap(UPrimitiveComponent* OverlappedComponent
 			ColParams.AddIgnoredActor(this);
 			ColParams.AddIgnoredActor(GetInstigator());
 
-			FHitResult out;
-			FVector StartLocation = boxCol->GetScaledBoxExtent();
+			FHitResult Rightout;
+			FVector RightStartLocation = FVector(GetActorLocation().X,
+				GetActorLocation().Y + boxCol->GetScaledBoxExtent().Y,
+				GetActorLocation().Z - boxCol->GetScaledBoxExtent().Z + 10);
+			FVector RightEndLocation = RightStartLocation + FVector::DownVector * 20;
+
+			GetWorld()->LineTraceSingleByObjectType(Rightout, RightStartLocation, RightEndLocation, queryPrms, ColParams);
+
+			FHitResult Leftout;
+			FVector LeftStartLocation = FVector(GetActorLocation().X,
+				GetActorLocation().Y - boxCol->GetScaledBoxExtent().Y,
+				GetActorLocation().Z - boxCol->GetScaledBoxExtent().Z + 10);
+			FVector LeftEndLocation = LeftStartLocation + FVector::DownVector * 20;
+
+			GetWorld()->LineTraceSingleByObjectType(Leftout, LeftStartLocation, LeftEndLocation, queryPrms, ColParams);
 			
-			StartLocation = FVector(GetActorLocation().X, GetActorLocation().Y, GetActorLocation().Z - StartLocation.Z + 2);
-			FVector EndLocation = StartLocation + FVector::DownVector * 100;
-			
-			if (GetWorld()->LineTraceSingleByObjectType(out, StartLocation, EndLocation, queryPrms, ColParams)) {
+			if (Leftout.bBlockingHit || Rightout.bBlockingHit) {
 				BananaState = EBananaState::BS_ONFLOOR;
 				movementComp->ProjectileGravityScale = 0;
-				
 			}
-
-			
 		}
 		break;
 	}

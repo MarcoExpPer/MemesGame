@@ -59,19 +59,26 @@ void ABoxTrickProjectile::OnBoxTrickOverlap(UPrimitiveComponent* OverlappedCompo
 			ColParams.AddIgnoredActor(this);
 			ColParams.AddIgnoredActor(GetInstigator());
 
-			FHitResult out;
-			FVector StartLocation = boxCol->GetScaledBoxExtent();
-			StartLocation = FVector(GetActorLocation().X, GetActorLocation().Y, GetActorLocation().Z - StartLocation.Z + 1);
-			FVector EndLocation = StartLocation + FVector::DownVector * 15;
+			FHitResult Rightout;
+			FVector RightStartLocation = FVector(GetActorLocation().X,
+				GetActorLocation().Y + boxCol->GetScaledBoxExtent().Y,
+				GetActorLocation().Z - boxCol->GetScaledBoxExtent().Z + 10);
+			FVector RightEndLocation = RightStartLocation + FVector::DownVector * 20;
 
-			DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Red, true);
+			GetWorld()->LineTraceSingleByObjectType(Rightout, RightStartLocation, RightEndLocation, queryPrms, ColParams);
 
-			if (GetWorld()->LineTraceSingleByObjectType(out, StartLocation, EndLocation, queryPrms, ColParams)) {
+			FHitResult Leftout;
+			FVector LeftStartLocation = FVector(GetActorLocation().X,
+				GetActorLocation().Y - boxCol->GetScaledBoxExtent().Y,
+				GetActorLocation().Z - boxCol->GetScaledBoxExtent().Z + 10);
+			FVector LeftEndLocation = LeftStartLocation + FVector::DownVector * 20;
+
+			GetWorld()->LineTraceSingleByObjectType(Leftout, LeftStartLocation, LeftEndLocation, queryPrms, ColParams);
+
+			if (Leftout.bBlockingHit || Rightout.bBlockingHit) {
 				TrickState = EBoxTrickState::TS_CHARGING;
 				ToRecharging();
 				movementComp->ProjectileGravityScale = 0;
-
-				DrawDebugPoint(GetWorld(), out.ImpactPoint, 20, FColor::Blue, true);
 			}
 		}
 		break;

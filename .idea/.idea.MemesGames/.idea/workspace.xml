@@ -10,9 +10,8 @@
     <list default="true" id="fa068346-5a34-443e-9e92-c6a036b81a57" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MemesGames/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MemesGames/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Maps/Lvl_Dream.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/Lvl_Dream.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Maps/MainMenu.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/MainMenu.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/UI/WBP_EndScreen.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/UI/WBP_EndScreen.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Plugins/Developer/RiderLink/Intermediate/FileSystemMappings.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Plugins/Developer/RiderLink/Intermediate/FileSystemMappings.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/MemesGames/Throwables/BananaProjectile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/MemesGames/Throwables/BananaProjectile.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/MemesGames/Throwables/BoxTrickProjectile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/MemesGames/Throwables/BoxTrickProjectile.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,15 +25,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="cidr-memory-view://2" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../Program Files/Epic Games/UE_5.1/Engine/Source/Runtime/Engine/Classes/Camera/CameraComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../Program Files/Epic Games/UE_5.1/Engine/Source/Runtime/Engine/Classes/Camera/CameraTypes.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../Program Files/Epic Games/UE_5.1/Engine/Source/Runtime/Engine/Classes/Components/BoxComponent.h" root0="FORCE_HIGHLIGHTING" />
@@ -50,7 +40,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "C++ Project.Unnamed.executor": "Debug",
+    "C++ Project.Unnamed.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Uproject.Unnamed.executor": "Debug",
     "git-widget-placeholder": "main",
@@ -113,6 +103,7 @@
       <workItem from="1722588288628" duration="2250000" />
       <workItem from="1722592554433" duration="2787000" />
       <workItem from="1722597471277" duration="1248000" />
+      <workItem from="1722678931942" duration="1366000" />
     </task>
     <servers />
   </component>
